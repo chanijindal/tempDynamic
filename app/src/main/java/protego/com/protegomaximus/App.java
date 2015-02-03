@@ -28,7 +28,8 @@ public class App extends Activity {
         if(RootTools.isBusyboxAvailable()==false)
             RootTools.offerBusyBox(this);
         else
-            Toast.makeText(getApplicationContext(),"busybox available",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Busybox available", Toast.LENGTH_SHORT).show();
+            Log.d ("APP", "Busybox is installed.");
     }
 
     private void copyFile (InputStream in, OutputStream out) {

@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity implements OnClickListener{
@@ -30,7 +32,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
     int chosen_dir_changed =0;
     TCPdump tcpdump;
     TCPdumpHandler tcpDumpHandler;
-
+     public static TextView resultTextView ;
     DrawerLayout drawer;
     ListView drawerList;
     String[] choice;
@@ -101,6 +103,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
         stopButton.setOnClickListener(this);
         startButton.setOnClickListener(this);
         eval.setOnClickListener(this);
+        resultTextView= (TextView) findViewById(R.id.textViewResult);
     }
 
     public  void showDirectoryDialog() {
@@ -224,11 +227,23 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 
     }
 
+
+
+
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.startButton :
                 startTCPdump();
+                if(GlobalVariables.AnomalyDetected==true)
+                {
+
+                    Intent intent = new Intent();
+                    intent.setAction("com.Protego.CUSTOM_INTENT");
+                    sendBroadcast(intent);
+                    GlobalVariables.AnomalyDetected=false;
+
+                }
                 break;
 
             case R.id.stopButton:

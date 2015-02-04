@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 public class EvaluateMain extends Activity {
@@ -25,6 +26,7 @@ public class EvaluateMain extends Activity {
         protected Void doInBackground(Void... params) {
             Tranny t1 = new Tranny();
             out = t1.evaluate();
+            Log.e("LOG",out);
             return null;
         }
 

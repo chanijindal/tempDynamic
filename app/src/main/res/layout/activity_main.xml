@@ -54,6 +54,21 @@
                 android:layout_below="@+id/stopButton"
                 android:layout_centerHorizontal="true" />
 
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:text="result"
+                android:id="@+id/textViewResult"
+                android:layout_below="@+id/eval"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="83dp"
+                android:textColor="#ff87d3ff"
+                android:textColorHighlight="#fffbff20"
+                android:scrollbars="vertical"
+                android:nestedScrollingEnabled="false"
+                android:maxLines="6" />
+
         </RelativeLayout>
         </FrameLayout>
             <ListView

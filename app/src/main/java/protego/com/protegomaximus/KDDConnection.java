@@ -6,6 +6,7 @@ package protego.com.protegomaximus;
  * are not related to smartphones. Hence, this object will contain 28 features.
  */
 
+import android.content.Intent;
 import android.util.Log;
 
 import java.io.File;
@@ -14,6 +15,7 @@ import java.util.Set;
 
 public class KDDConnection {
 
+    static int record=0;
     // Features as described in the KDD Cup '99 Documentation
     // List of features and descriptions at: http://www.sc.ehu.es/acwaldap/gureKddcup/README.pdf
 
@@ -134,6 +136,15 @@ public class KDDConnection {
         //writeToARFF(ReadFile1.csvFile, newConn);
         Log.d("EEERecord", newConn.convertRecord());
         Log.d("EEEClassify", Tranny.classify(newConn.convertRecord()));
+
+        if(Tranny.classify(newConn.convertRecord())=="anomaly")
+        {
+
+            GlobalVariables.AnomalyDetected=true;
+
+        }
+        record++;
+        MainActivity.resultTextView.setText(Tranny.classify(newConn.convertRecord())+" "+ String.valueOf(record));
         GlobalVariables.last100Conn.addConn(tempConn);
         GlobalVariables.lastTwoSec.addConn(tempConn);
     }
